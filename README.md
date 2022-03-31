@@ -1,8 +1,15 @@
+
+# 项目运行命令
+    python manage.py runserver
+
+# Week6_新增内容:
+    新增数据库超级用户
+        账号: pythonweb
+        密码: 123
+
 # Week5_新增内容:
     新增科研基地界面
     新增页面模板
-# 项目运行命令
-    python manage.py runserver
 
 ## 二级路由
     各路由对应的访问网址：

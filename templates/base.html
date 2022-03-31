@@ -44,6 +44,7 @@
                 <span>导航栏</span>
             </button>
         </div>
+
         <div class="collapse navbar-collapse" id="bs-example">
             <ul class="nav navbar-nav" style="width:100%;">
                 <li class="nav-top">
@@ -161,13 +162,11 @@
     $('#{{ active_menu }}').addClass("active")
 </script>
 
-<script>
-    $('#{{ sub_menu }}').addClass("active")
-</script>
-
 {#base.html添加模板变量sub_menu,   某个元素会添加active类，  需要从后台传值给sub_menu#}
 <script>
     $('#{{ sub_menu }}').addClass("active")
 </script>
+
+
 
 </html>

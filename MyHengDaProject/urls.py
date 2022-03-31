@@ -28,3 +28,10 @@ urlpatterns = [
     path('serviceApp/', include('serviceApp.urls')),
     path('scienceApp/', include('scienceApp.urls')),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
