@@ -9,11 +9,12 @@
     <title>恒达科技|{% block title %} {% endblock %}</title>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 
 <body>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
 <!-- 顶部图片 -->
 <div class="container top">
     <div class="row">
@@ -36,7 +37,9 @@
 </div>
 
 <!--导航栏具体内容-->
-<nnavbar-defaultav class="navbar " role="navigation">
+{#<nnavbar-defaultav class="navbar " role="navigation">#}
+
+<nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -47,19 +50,19 @@
 
         <div class="collapse navbar-collapse" id="bs-example">
             <ul class="nav navbar-nav" style="width:100%;">
-                <li class="nav-top">
+                <li class="nav-top" id="home">
                     <a href="{% url 'home' %}">首页</a>
                 </li>
                 <li class="dropdown nav-top">
                     <a href="#" class="dropdown-toggle on" data-toggle="dropdown">公司简介</a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" id="about">
                         <li><a href="{% url 'aboutApp:survey' %}">企业概况</a></li>
                         <li><a href="{% url 'aboutApp:honor' %}">荣誉资质</a></li>
                     </ul>
                 </li>
                 <li class="dropdown nav-top">
                     <a href="#" class="dropdown-toggle on" data-toggle="dropdown">新闻动态</a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" id="news">
                         <li><a href="{% url 'newsApp:company' %}">企业要闻</a></li>
                         <li><a href="{% url 'newsApp:industry' %}">行业新闻</a></li>
                         <li><a href="{% url 'newsApp:notice' %}">通知公告</a></li>
@@ -93,7 +96,8 @@
             </ul>
         </div>
     </div>
-</nnavbar-defaultav>
+    {#</nnavbar-defaultav>#}
+</nav>
 
 <!-- 放具体内容的地方, 在这个地方做一个标记, 之后其他HTML代码会插入到这个位置 -->
 {% block content%}
