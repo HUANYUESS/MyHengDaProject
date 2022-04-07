@@ -2,10 +2,15 @@
 # 项目运行命令
     python manage.py runserver
 
+# Week7_新增内容:
+> 新增产品中心页面模块
+
 # Week6_新增内容:
-    新增数据库超级用户
-        账号: pythonweb
-        密码: 123
+> 新增数据库超级用户
+>> 账号: pythonweb
+>> 密码: 123
+
+> 新增公司简介页面模块，aboutApp目录下的文件
 
 # Week5_新增内容:
     新增科研基地界面
