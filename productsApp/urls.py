@@ -10,4 +10,6 @@ urlpatterns = [
     # 三个路由最终换成下面这个
     # path('products/<str:productName>', views.products.name='product')
     path('products/<str:productName>/', views.products, name='products'),
+    path('productDetail/<int:id>/', views.productDetail, name='productDetail'),
+
 ]

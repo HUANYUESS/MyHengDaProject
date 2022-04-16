@@ -57,7 +57,7 @@
                                 <p>{{ product.description|truncatechars:"150"|linebreaks}}</p>
                                 <div class="thumbnail row-5">
                                     <div class="caption">
-                                        <a href="#" class="btn btn-primary" role="button">
+                                        <a href="{% url 'productsApp:productDetail' product.id %}" class="btn btn-primary" role="button">
                                             查看详情
                                         </a>
                                     </div>
@@ -65,6 +65,39 @@
                             </div>
                         </div>
                     {% endfor %}
+
+                    {#  分页内容  #}
+                    {% if pageData %}
+                        <div class="paging">
+                            <ul id="pages" class="pagination pagination-sm pagination-xs">
+                                {% if pageData.first %}
+                                    <li><a href="?page=1">1</a></li>
+                                {% endif %}
+                                {% if pageData.left %}
+                                    {% if pageData.left_has_more %}
+                                        <li><span>...</span></li>
+                                    {% endif %}
+                                    {% for i in pageData.left %}
+                                        <li><a href="?page={{i}}">{{i}}</a></li><!--单击时会将参数page的值封装到request中，后台从request中得到page变量值-->
+                                    {% endfor %}
+                                {% endif %}
+                                <li class="active"><a href="?page={{pageData.page}}">{{pageData.page}}</a></li>
+                                {% if pageData.right %}
+                                    {% for i in pageData.right %}
+                                        <li><a href="?page={{i}}">{{i}}</a></li>
+                                    {% endfor %}
+                                    {% if pageData.right_has_more %}
+                                        <li><span>...</span></li>
+                                    {% endif %}
+                                {% endif %}
+                                {% if pageData.last %}
+                                    <li><a href="?page={{pageData.total_pages}}">{{pageData.total_pages}}</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+
                 </div>
             </div>
         </div>

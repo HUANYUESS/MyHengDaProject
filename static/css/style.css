@@ -178,3 +178,12 @@
     color: #005197;
 }
 
+/* 分页显示 */
+.paging{
+    text-align: center;
+}
+
+.pagination .active a{
+    background-color: #005197;
+    border-color: #005197;
+}
