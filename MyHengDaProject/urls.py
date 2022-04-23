@@ -27,6 +27,8 @@ urlpatterns = [
     path('productsApp/', include('productsApp.urls')),
     path('serviceApp/', include('serviceApp.urls')),
     path('scienceApp/', include('scienceApp.urls')),
+    path('ueditor/', include('DjangoUeditor.urls')),
+    path('search/', include('haystack.urls')),
 ]
 
 from django.conf import settings
