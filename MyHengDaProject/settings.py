@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'contactApp',
     'DjangoUeditor',  # 添加富文本应用
     'haystack',  # django-haystack
+    'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
