@@ -1,6 +1,45 @@
-
 # 项目运行命令
     python manage.py runserver
+
+# 实验环境:
+> Python: 3.8 【必须】(如果用低版本会报奇奇怪怪的包不错误)
+> Whoosh
+> opencv-python
+> django-haystack
+> lxml
+> docxtpl
+> Django
+> urllib3
+> sqlparse
+
+# Week13_新增内容:
+> 新增服务支持模块，资料下载和AI人脸识别，并补充搜索框选项。
+
+# Week12_新增内容:
+> 新增人才招聘模块
+>> 嵌入百度地图
+>> 发送邮件
+>>> 邮箱信息设置可在MyHengDaProject的setting文件中进行设置
+>> 动态生成word文档
+
+# Week11_新增内容:
+> 新增新闻模块
+>> 开发'新闻列表'和'新闻详情'页面
+>> 新闻搜索
+
+
+# Week9_新增内容:
+> 新增产品中心模块
+> 制作产品列表页面
+> Django分页显示
+> 制作产品详情页面
+
+
+# Week8_新增内容:
+> 新增公司简介模块
+> 制作侧边导航栏
+> 数据库模型
+> 优化后台管理
 
 # Week7_新增内容:
 > 新增产品中心页面模块

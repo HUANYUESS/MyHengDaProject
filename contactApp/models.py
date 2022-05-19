@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 from django.utils import timezone
 
+
 class Ad(models.Model):
     title = models.CharField(max_length=50, verbose_name='招聘岗位')
     description = models.TextField(verbose_name='岗位要求')
@@ -16,7 +17,8 @@ class Ad(models.Model):
     class Meta:
         verbose_name = '招聘广告'
         verbose_name_plural = '招聘广告'
-        ordering = ('-publishDate', )
+        ordering = ('-publishDate',)
+
 
 from datetime import datetime
 
@@ -58,3 +60,71 @@ class Resume(models.Model):
         verbose_name = '简历'
         verbose_name_plural = '简历'
         ordering = ('-status', '-publishDate')
+
+
+from django.db.models.signals import post_init, post_save
+from django.dispatch import receiver
+
+
+@receiver(post_init, sender=Resume)
+def before_save_resume(sender, instance, **kwargs):
+    instance.__original_status = instance.status
+
+
+from django.core.mail import send_mail
+import os
+from docxtpl import DocxTemplate
+from docxtpl import InlineImage
+from docx.shared import Mm, Inches, Pt
+
+
+@receiver(post_save, sender=Resume)
+def post_save_resume(sender, instance, **kwargs):
+    # print(instance.__original_status)
+    # print(instance.status)
+
+    email = instance.email  # 井应聘者邮箱
+    EMAIL_FROM = 'XXXXXXX@QQ.COM'  # 企业 QQ邮箱
+    if instance.__original_status == 1 and instance.status == 2:
+        email_title = '通知:恒达科技招聘初试结果'
+        email_body = '恭喜您通过本企业初试'
+        send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
+
+        template_path = os.getcwd() + '/media/recruit.docx'  # 模板文件
+        template = DocxTemplate(template_path)
+        # 从instance实例中获取当前简历字段信息
+        name = instance.name
+        personID = instance.personID
+        sex = instance.sex
+        email = instance.email
+        birth = instance.birth
+        edu = instance.edu
+        school = instance.school
+        major = instance.major
+        position = instance.position
+        experience = instance.experience
+        photo = instance.photo
+        context = {
+            'name': name,
+            'personID': personID,
+            'sex': sex,
+            'email': email,
+            'birth': birth,
+            'edu': edu,
+            'school': school,
+            'major': major,
+            'position': position,
+            'experience': experience,
+            'photo': InlineImage(template, photo, width=Mm(30), height=Mm(40))
+        }
+        template.render(context)
+        filename = '%s/media/contact/recruit/%s_%d.docx' % (
+            os.getcwd(), instance.name, instance.id
+        )
+        template.save(filename)
+    elif instance.__original_status == 1 and instance.status == 3:
+        email_title = '通知:恒达科技招聘初试结果'
+        email_body = '很遗憾,您未能通过本企业初试,感谢您的关注'
+        send_status = send_mail(email_title, email_body, EMAIL_FROM, [email])
+
+

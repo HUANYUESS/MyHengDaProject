@@ -150,6 +150,16 @@ HAYSTACK_CONNECTIONS = {
 HAYSTACK_SEARCH_RESULTS_PER_PAGE  =  10
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
+# 邮箱设置
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25                              # 端口号
+EMAIL_HOST_USER = 'XXXXXX@qq.com'           # 企业QQ账号
+EMAIL_HOST_PASSWORD = 'XXXXX'        # 授权码
+EMAIL_USE_TLS = True
+
+
+
+
 
 
 
