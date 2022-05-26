@@ -158,7 +158,16 @@ EMAIL_HOST_PASSWORD = 'XXXXX'        # 授权码
 EMAIL_USE_TLS = True
 
 
-
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache', #数据库缓存
+        'LOCATION': 'cache_table_home', #缓存表
+        'TIMEOUT': 600, #超时时间 600秒
+        'OPTIONS': {
+            'MAX_ENTRIES': 2000  #最大并发量
+        }
+    }
+}
 
 
 
